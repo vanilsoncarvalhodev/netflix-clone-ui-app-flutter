@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:netflixui/json/root_app_json.dart';
+import 'package:netflixui/screens/em_breve_screen.dart';
 import 'package:netflixui/screens/home_screen.dart';
 
 class RootApp extends StatefulWidget {
@@ -25,11 +26,7 @@ class _RootAppState extends State<RootApp> {
       index: activeTab,
       children: [
         HomeScreen(),
-        Center(
-          child: Container(
-            child: Text("Em breve", style: TextStyle(fontSize: 20),),
-          ),
-        ),
+        EmBreveScreen(),
         Center(
           child: Container(
             child: Text("Downloads", style: TextStyle(fontSize: 20),),
@@ -58,7 +55,7 @@ class _RootAppState extends State<RootApp> {
                 children: [
                   Icon(
                     activeTab == index ? items[index]['iconActive'] : items[index]['icon'],
-                    color: Colors.white,
+                    color: activeTab == index ?  Colors.white : Colors.white.withOpacity(0.5),
                   ),
                   SizedBox(height: 5,),
                   Text(
