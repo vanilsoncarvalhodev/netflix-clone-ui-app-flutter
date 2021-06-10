@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:netflixui/json/root_app_json.dart';
+import 'package:netflixui/screens/download_screen.dart';
 import 'package:netflixui/screens/em_breve_screen.dart';
 import 'package:netflixui/screens/home_screen.dart';
 
@@ -27,11 +28,7 @@ class _RootAppState extends State<RootApp> {
       children: [
         HomeScreen(),
         EmBreveScreen(),
-        Center(
-          child: Container(
-            child: Text("Downloads", style: TextStyle(fontSize: 20),),
-          ),
-        ),
+        DownloadScreen(),
       ],
     );
   }
