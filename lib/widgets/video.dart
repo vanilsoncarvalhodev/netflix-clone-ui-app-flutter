@@ -87,6 +87,27 @@ class _VideoState extends State<Video> {
                     ),
                   ),
                 ),
+                widget.video["tipo"] != null ?
+                Positioned(
+                  left: 5,
+                  bottom: 20,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      color: Colors.black.withOpacity(0.5),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 13, left: 13, top: 8,bottom: 8),
+                      child: Text(
+                        widget.video["tipo"],
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.white
+                        ),
+                      ),
+                    ),
+                  ),
+                ) : Container(),
                 Positioned(
                   right: 10,
                   bottom: 20,

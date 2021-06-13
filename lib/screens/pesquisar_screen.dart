@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:netflixui/json/pesquisar_json.dart';
+import 'package:netflixui/screens/video_detalhes_screen.dart';
 
 class PesquisarScreen extends StatefulWidget {
   const PesquisarScreen({ Key key }) : super(key: key);
@@ -114,70 +115,77 @@ class _Body extends StatelessWidget {
             ),
             Column(
               children: List.generate(pesquisarJson.length, (index) {
-                return Padding(
-                  padding: const EdgeInsets.only(bottom: 3),
-                  child: Container(
-                    color: Colors.grey.withOpacity(0.2),
-                    child: Row(
-                      children: [
-                        Container(
-                          width: size.width * 0.9,
-                          child: Row(
-                            children: [
-                              Stack(
-                                children: [
-                                  Container(
-                                    height: 70,
-                                    width: 120,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      image: DecorationImage(
-                                        image: AssetImage(
-                                          pesquisarJson[index]['img'],
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(context, 
+                      MaterialPageRoute(builder: (_) => 
+                      VideosDetalhesScreen(video: pesquisarJson[index],)));
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 3),
+                    child: Container(
+                      color: Colors.grey.withOpacity(0.2),
+                      child: Row(
+                        children: [
+                          Container(
+                            width: size.width * 0.9,
+                            child: Row(
+                              children: [
+                                Stack(
+                                  children: [
+                                    Container(
+                                      height: 70,
+                                      width: 120,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5),
+                                        image: DecorationImage(
+                                          image: AssetImage(
+                                            pesquisarJson[index]['img'],
+                                          ),
+                                          fit: BoxFit.cover,
                                         ),
-                                        fit: BoxFit.cover,
                                       ),
                                     ),
-                                  ),
-                                  Container(
-                                    height: 70,
-                                    width: 120,
-                                    decoration: BoxDecoration(
-                                      color: Colors.black.withOpacity(0.1),
+                                    Container(
+                                      height: 70,
+                                      width: 120,
+                                      decoration: BoxDecoration(
+                                        color: Colors.black.withOpacity(0.1),
+                                      ),
                                     ),
+                                  ],
+                                ),
+                                SizedBox(width: 10,),
+                                Container(
+                                  width: size.width * 0.4,
+                                  child: Text(
+                                    pesquisarJson[index]['titulo'],
+                                    style: TextStyle(fontSize: 15, color: Colors.white),
                                   ),
-                                ],
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 10),
+                            child: Container(
+                              height: 30,
+                              width: 30,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(width: 1.5, color: Colors.white),
+                                color: Colors.transparent,
                               ),
-                              SizedBox(width: 10,),
-                              Container(
-                                width: size.width * 0.4,
-                                child: Text(
-                                  pesquisarJson[index]['titulo'],
-                                  style: TextStyle(fontSize: 15, color: Colors.white),
+                              child: Center(
+                                child: Icon(
+                                  Icons.play_arrow,
+                                  color: Colors.white,
                                 ),
                               ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 10),
-                          child: Container(
-                            height: 30,
-                            width: 30,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(width: 1.5, color: Colors.white),
-                              color: Colors.transparent,
-                            ),
-                            child: Center(
-                              child: Icon(
-                                Icons.play_arrow,
-                                color: Colors.white,
-                              ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 );
