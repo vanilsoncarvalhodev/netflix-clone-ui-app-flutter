@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:netflixui/json/home_json.dart';
+import 'package:netflixui/screens/pesquisar_screen.dart';
+import 'package:netflixui/screens/video_detalhes_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -134,30 +136,40 @@ class _HomeScreenState extends State<HomeScreen> {
                         )
                       ],
                     ),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(4)
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(left:8, right: 13, top: 2, bottom: 2),
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.play_arrow,
-                              color: Colors.black,
-                              size: 30,
-                            ),
-                            SizedBox(width: 5,),
-                            Text(
-                              "Assistir",
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.black
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => VideosDetalhesScreen(video: minhaLista[1],)
+                          )
+                        );
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(4)
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left:8, right: 13, top: 2, bottom: 2),
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.play_arrow,
+                                color: Colors.black,
+                                size: 30,
                               ),
-                            )
-                          ],
+                              SizedBox(width: 5,),
+                              Text(
+                                "Assistir",
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.black
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -219,7 +231,10 @@ class _HomeScreenState extends State<HomeScreen> {
                               AntDesign.search1,
                               size: 28,
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(context, 
+                                MaterialPageRoute(builder: (_) => PesquisarScreen()));
+                            },
                           ),
                           IconButton(
                             icon: Container(
@@ -285,16 +300,23 @@ class _HomeScreenState extends State<HomeScreen> {
             padding: const EdgeInsets.only(left: 10),
             child: Row(
               children: List.generate(lista.length, (index) {
-                return Container(
-                  margin: EdgeInsets.only(right: 8),
-                  width: width,
-                  height: height,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(6),
-                    image: DecorationImage(
-                      image: AssetImage(lista[index]['img']),
-                      fit: BoxFit.cover
-                    )
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(
+                      builder: (_) => VideosDetalhesScreen(video: lista[index],)
+                    ));
+                  },
+                  child: Container(
+                    margin: EdgeInsets.only(right: 8),
+                    width: width,
+                    height: height,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(6),
+                      image: DecorationImage(
+                        image: AssetImage(lista[index]['img']),
+                        fit: BoxFit.cover
+                      )
+                    ),
                   ),
                 );
               })

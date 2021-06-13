@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:netflixui/json/em_breve_json.dart';
+import 'package:netflixui/screens/pesquisar_screen.dart';
 import 'package:netflixui/widgets/video.dart';
 
 class EmBreveScreen extends StatefulWidget {
@@ -29,7 +30,10 @@ class _EmBreveScreenState extends State<EmBreveScreen> {
       actions: [
         IconButton(
           icon: Icon(AntDesign.search1, size: 28,),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(context, 
+              MaterialPageRoute(builder: (_) => PesquisarScreen()));
+          },
         ),
         IconButton(
           icon: Container(
